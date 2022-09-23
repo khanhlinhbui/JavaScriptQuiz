@@ -7,12 +7,7 @@
     float: right ;
 }
  
-.heading {
-    text-align: center;
+.center { 
+    margin: auto;
+    width: 20%
 }
-
-
-
-
-
-   
