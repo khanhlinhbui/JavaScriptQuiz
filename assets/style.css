@@ -1,6 +1,7 @@
 
 #View_Highscore {
     float: left;
+    color: rgb(118, 66, 166);
 }
 
 #Time {
@@ -10,4 +11,12 @@
 .center { 
     margin: auto;
     width: 20%
+}
+
+.multipleChoice {
+    margin: 2px;
+    color: white;
+    background-color: rgb(118, 66, 166);
+    border-radius: 5px; 
+    
 }
