@@ -15,16 +15,19 @@ function setTime(){     // Create function to run timer
         }, 1000
     );
 }
- 
+ // create variable to hold id 
 let initial_screen = document.querySelector("#initial_screen")  
 let questions = document.querySelector("#questions")
-questions.style.display = "none";
+let post_quiz = document.querySelector("#post_quiz")
+questions.style.display = "none"; // hiding the questions screens
+post_quiz.style.display = "none"; // hiding the all done screen
 function QuizStart(){
      setTime();        // Running Timer
     initial_screen.style.display = "none"; // Hiding the initial screen 
     questions.style.display = "block"; // Showing the first question screen
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1); 
+
 } 
 button.addEventListener("click", QuizStart); 
 
@@ -104,20 +107,29 @@ function generate_multipleChoice(multipleChoice_index){
 
     }
 }
-
+// Create transition button 
+// questoin by question
+// if it reach the final position of the question.list (aka last question)
+// then display the post_quiz section
 function correct_answer(){
+    if (question_position == questions_list.length -1){ // minus one to stop generating the quetion 
+        questions.style.display = "none"; // Hiding the questions
+        post_quiz.style.display = "block"; // Display " All done" slide
+        return;
+    } 
     question_position += 1
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
-
-    console.log("hihi")
-
 }
 function inCorrect_answer(){
+    if (question_position == questions_list.length -1){ // 
+        questions.style.display = "none"; // Hiding the questions
+        post_quiz.style.display = "block"; // Display " All done" slide
+        return;
+    } 
     question_position += 1
     generate_questions(question_position);
-    generate_multipleChoice(questions_list[question_position].correct_answer -1)
-        console.log("hehe");
+    generate_multipleChoice(questions_list[question_position].correct_answer -1)         
 }
 
 
