@@ -14,20 +14,47 @@ function setTime(){     // Create function to run timer
             } 
         }, 1000
     );
+    }
+// Create time intersection between pages
+let oneSecond= 1; 
+function timeIntsCorrectAns(){
+    const timeInts = setInterval(
+        function(){
+            oneSecond --;
+            if (oneSecond==0){
+                clearInterval(timeInts); 
+                oneSecond = 1; 
+                correct_notice.style.display = "none";
+            }
+        }, 1000
+    );
 }
+function timeIntsInCorrectAns(){
+    const timeInts = setInterval(
+        function(){
+            oneSecond --;
+            if (oneSecond==0){
+                clearInterval(timeInts);
+                oneSecond = 1; 
+                incorrect_notice.style.display = "none";
+            }
+        }, 1000
+    );
+}
+
  // create variable to hold id 
 let initial_screen = document.querySelector("#initial_screen")  
 let questions = document.querySelector("#questions")
 let post_quiz = document.querySelector("#post_quiz")
 let correct_notice = document.querySelector("#correctNotice")
-let inconrrect_notice = document.querySelector("#incorrectNotice")
+let incorrect_notice = document.querySelector("#incorrectNotice")
 questions.style.display = "none"; // hiding the questions screens
 post_quiz.style.display = "none"; // hiding the all done screen
 function QuizStart(){
      setTime();        // Running Timer
     initial_screen.style.display = "none"; // Hiding the initial screen 
     correct_notice.style.display = "none"; // Hiding the correct answer notification 
-    inconrrect_notice.style.display = "none";    // Hiding the incorrect answer notification
+    incorrect_notice.style.display = "none";    // Hiding the incorrect answer notification
     questions.style.display = "block"; // Showing the first question screen
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1); 
@@ -117,6 +144,7 @@ function generate_multipleChoice(multipleChoice_index){
 // if it reach the final position of the question.list (aka last question)
 // then display the post_quiz section
 function correct_answer(){
+    timeIntsCorrectAns();
     if (question_position == questions_list.length -1){ // minus one to stop generating the quetion 
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
@@ -130,12 +158,13 @@ function correct_answer(){
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
 }
 function inCorrect_answer(){
+    timeIntsInCorrectAns();
     if (question_position == questions_list.length -1){ // 
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
         return;
     } 
-    inconrrect_notice.style.display = "block";
+    incorrect_notice.style.display = "block"; 
     correct_notice.style.display = "none";
     question_position += 1
     generate_questions(question_position);
