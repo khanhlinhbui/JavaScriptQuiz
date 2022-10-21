@@ -2,15 +2,18 @@
 
 let button = document.querySelector("#StarQuiz_button");
 let secondsLeftText = document.querySelector("#Time");
-let secondsLeft = 75  // Create Variable for time interval equal 75 seconds.
+let secondsLeft = 75   // Create Variable for time interval equal 75 seconds.
 let question_position = 0; // Create a variable to hold the index 
 function setTime(){     // Create function to run timer
     const timerInterval = setInterval(
         function(){ 
             secondsLeftText.textContent = "Time: " + secondsLeft;
             secondsLeft --;
-            if (secondsLeft==0){
+            if (secondsLeft<=-1){
                 clearInterval(timerInterval); 
+                secondsLeftText.textContent = "Time: " + 0;
+                post_quiz.style.display = "block";
+                questions.style.display = "none";
             } 
         }, 1000
     );
@@ -37,6 +40,7 @@ function timeIntsInCorrectAns(){
                 clearInterval(timeInts);
                 oneSecond = 1; 
                 incorrect_notice.style.display = "none";
+
             }
         }, 1000
     );
@@ -144,6 +148,7 @@ function generate_multipleChoice(multipleChoice_index){
 // if it reach the final position of the question.list (aka last question)
 // then display the post_quiz section
 function correct_answer(){
+    
     timeIntsCorrectAns();
     if (question_position == questions_list.length -1){ // minus one to stop generating the quetion 
         questions.style.display = "none"; // Hiding the questions
@@ -158,6 +163,7 @@ function correct_answer(){
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
 }
 function inCorrect_answer(){
+    secondsLeft -= 20;
     timeIntsInCorrectAns();
     if (question_position == questions_list.length -1){ // 
         questions.style.display = "none"; // Hiding the questions
