@@ -2,7 +2,7 @@
 
 let button = document.querySelector("#StarQuiz_button");
 let secondsLeftText = document.querySelector("#Time");
-let secondsLeft = 75;  // Create Variable for time interval equal 75 seconds.
+let secondsLeft = 75  // Create Variable for time interval equal 75 seconds.
 let question_position = 0; // Create a variable to hold the index 
 function setTime(){     // Create function to run timer
     const timerInterval = setInterval(
@@ -19,17 +19,23 @@ function setTime(){     // Create function to run timer
 let initial_screen = document.querySelector("#initial_screen")  
 let questions = document.querySelector("#questions")
 let post_quiz = document.querySelector("#post_quiz")
+let correct_notice = document.querySelector("#correctNotice")
+let inconrrect_notice = document.querySelector("#incorrectNotice")
 questions.style.display = "none"; // hiding the questions screens
 post_quiz.style.display = "none"; // hiding the all done screen
 function QuizStart(){
      setTime();        // Running Timer
     initial_screen.style.display = "none"; // Hiding the initial screen 
+    correct_notice.style.display = "none"; // Hiding the correct answer notification 
+    inconrrect_notice.style.display = "none";    // Hiding the incorrect answer notification
     questions.style.display = "block"; // Showing the first question screen
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1); 
 
 } 
 button.addEventListener("click", QuizStart); 
+// create post_quiz function
+
 
 // Quizing Section 
 let multipleChoice_1 = document.querySelector("#multipleChoice_1"); // Create Variable to hold ids
@@ -99,12 +105,11 @@ function generate_multipleChoice(multipleChoice_index){
     for (let i=0; i < multipleChoice.length; i++) {
         if (i== multipleChoice_index){
             removeEventListener(multipleChoice[i]);
-            multipleChoice[i].addEventListener("click",correct_answer);
+            multipleChoice[i].addEventListener("click",correct_answer);   
         } else{
             removeEventListener(multipleChoice[i]);
-            multipleChoice[i].addEventListener("click",inCorrect_answer);
+            multipleChoice[i].addEventListener("click",inCorrect_answer); 
         }
-
     }
 }
 // Create transition button 
@@ -117,6 +122,9 @@ function correct_answer(){
         post_quiz.style.display = "block"; // Display " All done" slide
         return;
     } 
+    // ***** if i choose correct answer *****
+    correct_notice.style.display = "block";
+    incorrect_notice.style.display = "none";
     question_position += 1
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
@@ -127,10 +135,11 @@ function inCorrect_answer(){
         post_quiz.style.display = "block"; // Display " All done" slide
         return;
     } 
+    inconrrect_notice.style.display = "block";
+    correct_notice.style.display = "none";
     question_position += 1
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1)         
 }
-
 
 
