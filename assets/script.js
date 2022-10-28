@@ -1,5 +1,6 @@
 // First PAge
 
+let finalScore_text = document.querySelector("#score");
 let button = document.querySelector("#StarQuiz_button");
 let secondsLeftText = document.querySelector("#Time");
 let secondsLeft = 75   // Create Variable for time interval equal 75 seconds.
@@ -50,6 +51,7 @@ function timeIntsInCorrectAns(){
 let initial_screen = document.querySelector("#initial_screen")  
 let questions = document.querySelector("#questions")
 let post_quiz = document.querySelector("#post_quiz")
+let finalScore = 0;
 let correct_notice = document.querySelector("#correctNotice")
 let incorrect_notice = document.querySelector("#incorrectNotice")
 questions.style.display = "none"; // hiding the questions screens
@@ -65,7 +67,7 @@ function QuizStart(){
 
 } 
 button.addEventListener("click", QuizStart); 
-// create post_quiz function
+
 
 
 // Quizing Section 
@@ -153,6 +155,8 @@ function correct_answer(){
     if (question_position == questions_list.length -1){ // minus one to stop generating the quetion 
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
+        console.log(finalScore_text)
+        finalScore_text.innerHTML= " Your final score is " + finalScore;
         return;
     } 
     // ***** if i choose correct answer *****
@@ -161,6 +165,9 @@ function correct_answer(){
     question_position += 1
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
+    finalScore += 10 
+    console.log(finalScore)
+    
 }
 function inCorrect_answer(){
     secondsLeft -= 20;
@@ -168,13 +175,17 @@ function inCorrect_answer(){
     if (question_position == questions_list.length -1){ // 
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
+        console.log(finalScore_text)
+        finalScore_text.innerHTML = " Your final score is " + finalScore;
+       
         return;
+        
     } 
     incorrect_notice.style.display = "block"; 
     correct_notice.style.display = "none";
     question_position += 1
     generate_questions(question_position);
-    generate_multipleChoice(questions_list[question_position].correct_answer -1)         
+    generate_multipleChoice(questions_list[question_position].correct_answer -1) 
+       
 }
-
 
