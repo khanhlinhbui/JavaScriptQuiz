@@ -1,8 +1,9 @@
 // First PAge
-
-let finalScore_text = document.querySelector("#score");
-let button = document.querySelector("#StarQuiz_button");
-let secondsLeftText = document.querySelector("#Time");
+let submitButton = document.querySelector("#submitButton") // define variable 
+let finalScore_text = document.querySelector("#score"); // define variable
+let button = document.querySelector("#StarQuiz_button"); // define variable
+let secondsLeftText = document.querySelector("#Time"); // define variable
+let finalPage = document.querySelector("#finalPage"); // define variable
 let secondsLeft = 75   // Create Variable for time interval equal 75 seconds.
 let question_position = 0; // Create a variable to hold the index 
 function setTime(){     // Create function to run timer
@@ -56,11 +57,13 @@ let correct_notice = document.querySelector("#correctNotice")
 let incorrect_notice = document.querySelector("#incorrectNotice")
 questions.style.display = "none"; // hiding the questions screens
 post_quiz.style.display = "none"; // hiding the all done screen
+finalPage.style.display = "none"; // Hiding Final page
 function QuizStart(){
      setTime();        // Running Timer
     initial_screen.style.display = "none"; // Hiding the initial screen 
     correct_notice.style.display = "none"; // Hiding the correct answer notification 
     incorrect_notice.style.display = "none";    // Hiding the incorrect answer notification
+    finalPage.style.display = "none"; // Hiding Final page
     questions.style.display = "block"; // Showing the first question screen
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1); 
@@ -188,4 +191,9 @@ function inCorrect_answer(){
     generate_multipleChoice(questions_list[question_position].correct_answer -1) 
        
 }
+function submit() { // create submit function for Submit Button
+    post_quiz.style.display = "none"; //hiding the postquiz page 
+    finalPage.style.display = "block"; // display final page 
 
+}
+submitButton.addEventListener("click",submit) // Create a cloick for submit button 

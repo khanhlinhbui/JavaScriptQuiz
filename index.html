@@ -15,17 +15,17 @@
         <section id="initial_screen">     <!--initial screen-->
         <h1 id="header">Coding Quiz Challange</h1>
         <p> Try to answer the following code-related question...</p>
-        <div id="StarQuiz_button"><button>Start Quiz</button></div>
+        <div id="StarQuiz_button"><button class="button">Start Quiz</button></div>
     </section>
     <section id="questions">
         <h1 id="question_title"></h1> 
-        <button class="multipleChoice" id="multipleChoice_1"></button> 
+        <button class="button" id="multipleChoice_1"></button> 
         <br>
-        <button class="multipleChoice" id="multipleChoice_2"></button> 
+        <button class="button" id="multipleChoice_2"></button> 
         <br>
-        <button class="multipleChoice" id="multipleChoice_3"></button> 
+        <button class="button" id="multipleChoice_3"></button> 
         <br>
-        <button class="multipleChoice" id="multipleChoice_4"></button> 
+        <button class="button" id="multipleChoice_4"></button> 
         <br> 
         <hr>
         <p id="correctNotice" class="correctNotice"  > Correct </p> 
@@ -35,7 +35,14 @@
         <h1 id="allDone">All done</h1>
         <p id="score"> Your final score is </p> 
         <label for="initial"> Enter your initial:</label>
-        <input type="text" id="initial" name="initial" placeholder="">
+        <input type="text" id="initial" name="initial" placeholder=""> <button id="submitButton" class="button"> Submit</button>
+   </section>
+   <section id="finalPage">
+        <h1> Highscores</h1>
+        <div id="highScoresBox">
+            <ol id="highScoresList"></ol>
+        </div>
+        <button id="goBackButton" class="button">Go Back</button> <button id="clearHighScoresButton" class="button">Clear Highscores</button>
    </section>
 </main>
     
