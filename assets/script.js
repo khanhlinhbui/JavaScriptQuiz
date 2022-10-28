@@ -1,4 +1,6 @@
 // First PAge
+let goBackButton = document.querySelector("#goBackButton")
+let clearHighScoresButton = document.querySelector("#clearHighScoresButton")
 let submitButton = document.querySelector("#submitButton") // define variable 
 let finalScore_text = document.querySelector("#score"); // define variable
 let button = document.querySelector("#StarQuiz_button"); // define variable
@@ -65,6 +67,7 @@ function QuizStart(){
     incorrect_notice.style.display = "none";    // Hiding the incorrect answer notification
     finalPage.style.display = "none"; // Hiding Final page
     questions.style.display = "block"; // Showing the first question screen
+    post_quiz.style.display = "none"; // Hiding the post quiz screen
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1); 
 
@@ -194,6 +197,19 @@ function inCorrect_answer(){
 function submit() { // create submit function for Submit Button
     post_quiz.style.display = "none"; //hiding the postquiz page 
     finalPage.style.display = "block"; // display final page 
+}
+function goBack(){ // generating Go back button
+    initial_screen.style.display = "block"; // Show the initial screen
+    correct_notice.style.display = "none"; // Hiding the correct answer notification 
+    incorrect_notice.style.display = "none";    // Hiding the incorrect answer notification
+    finalPage.style.display = "none"; // Hiding Final page
+    questions.style.display = "none"; // Hiding the question page
+    post_quiz.style.display = "none"; // Hiding the post quiz page
+    secondsLeft = 75; // reset to default value
+    question_position = 0; // reset question position to default value
+    finalScore = 0; // Reset final Score to default value
 
 }
 submitButton.addEventListener("click",submit) // Create a cloick for submit button 
+goBackButton.addEventListener("click",goBack) // Create a click for go back button 
+
