@@ -210,10 +210,18 @@ function submit() { // create submit function for Submit Button
     finalPage.style.display = "block"; // display final page 
     finalScores_dictionary
     finalScores_list.push(finalScore)
-    if(!(finalScore.toString() in highScores_list)){ 
-        highScores_list[finalScore.toString()] = []
+    if(!(finalScore.toString() in finalScores_dictionary)){ 
+        finalScores_dictionary[finalScore.toString()] = []
     }
-    highScores_list[finalScore.toString()].push()
+    
+    let initialList = document.getElementsByName('initial') // use a list of elementhave initial as a name
+    for ( let i = 0; i < initialList.length; i++ ) { // Get individual element 
+        let a = initialList[i];
+        console.log(a.value)
+        finalScores_dictionary[finalScore.toString()].push(a.value)
+        console.log(finalScores_dictionary) 
+    }
+    // console.log(document.getElementsByName('initial'))
 }
 function goBack(){ // generating Go back button
     initial_screen.style.display = "block"; // Show the initial screen
