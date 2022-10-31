@@ -1,4 +1,10 @@
 // First PAge
+let finalScores_dictionary = 
+{
+    
+
+}
+let finalScores_list =[]
 let goBackButton = document.querySelector("#goBackButton")
 let clearHighScoresButton = document.querySelector("#clearHighScoresButton")
 let submitButton = document.querySelector("#submitButton") // define variable 
@@ -7,7 +13,8 @@ let button = document.querySelector("#StarQuiz_button"); // define variable
 let secondsLeftText = document.querySelector("#Time"); // define variable
 let finalPage = document.querySelector("#finalPage"); // define variable
 let secondsLeft = 75   // Create Variable for time interval equal 75 seconds.
-let question_position = 0; // Create a variable to hold the index 
+let question_position = 0;
+console.log(question_position) // Create a variable to hold the index 
 function setTime(){     // Create function to run timer
     const timerInterval = setInterval(
         function(){ 
@@ -18,6 +25,7 @@ function setTime(){     // Create function to run timer
                 secondsLeftText.textContent = "Time: " + 0;
                 post_quiz.style.display = "block";
                 questions.style.display = "none";
+                finalScore_text.innerHTML= " Your final score is " + finalScore.toString();
             } 
         }, 1000
     );
@@ -54,7 +62,8 @@ function timeIntsInCorrectAns(){
 let initial_screen = document.querySelector("#initial_screen")  
 let questions = document.querySelector("#questions")
 let post_quiz = document.querySelector("#post_quiz")
-let finalScore = 0;
+let finalScore = 0; 
+console.log(finalScore)
 let correct_notice = document.querySelector("#correctNotice")
 let incorrect_notice = document.querySelector("#incorrectNotice")
 questions.style.display = "none"; // hiding the questions screens
@@ -131,9 +140,13 @@ let questions_list = [ // Create question list using JSON to store information a
 function generate_questions(question_index) { // Generate questions based on question_list  JSON information
     question_title.textContent = questions_list[question_index].question_title;
     multipleChoice_1.textContent = questions_list[question_index].multipleChoice_1;
+    console.log(question_position)
     multipleChoice_2.textContent = questions_list[question_index].multipleChoice_2;
+    console.log(question_position)
     multipleChoice_3.textContent = questions_list[question_index].multipleChoice_3;
+    console.log(question_position)
     multipleChoice_4.textContent = questions_list[question_index].multipleChoice_4;
+    console.log(question_position)
 
 }
 function removeEventListener(button) {
@@ -162,7 +175,7 @@ function correct_answer(){
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
         console.log(finalScore_text)
-        finalScore_text.innerHTML= " Your final score is " + finalScore;
+        finalScore_text.innerHTML= " Your final score is " + finalScore.toString();
         return;
     } 
     // ***** if i choose correct answer *****
@@ -182,10 +195,8 @@ function inCorrect_answer(){
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
         console.log(finalScore_text)
-        finalScore_text.innerHTML = " Your final score is " + finalScore;
-       
-        return;
-        
+        finalScore_text.innerHTML = " Your final score is " + finalScore.toString();
+        return;  
     } 
     incorrect_notice.style.display = "block"; 
     correct_notice.style.display = "none";
@@ -197,6 +208,12 @@ function inCorrect_answer(){
 function submit() { // create submit function for Submit Button
     post_quiz.style.display = "none"; //hiding the postquiz page 
     finalPage.style.display = "block"; // display final page 
+    finalScores_dictionary
+    finalScores_list.push(finalScore)
+    if(!(finalScore.toString() in highScores_list)){ 
+        highScores_list[finalScore.toString()] = []
+    }
+    highScores_list[finalScore.toString()].push()
 }
 function goBack(){ // generating Go back button
     initial_screen.style.display = "block"; // Show the initial screen
