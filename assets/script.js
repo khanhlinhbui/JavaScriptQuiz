@@ -221,9 +221,9 @@ function submit() { // create submit function for Submit Button
        console.log(initials)
        for ( j = 0; j < initials.length; j++ ) {
         console.log(initials[j]);
-        
+        console.log(finalScores_list[k])
         const li = document.createElement('li');
-        const text = document.createTextNode("abc");
+        const text = document.createTextNode(initials[j]+ "-" + finalScores_list[k].toString()+"");
         li.appendChild(text);
         highScoresListSection.appendChild(li);
         // li.innerHTML = initials[j] - finalScore[k];
