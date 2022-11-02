@@ -1,8 +1,7 @@
 // First PAge
+let highScoresListSection= document.querySelector("#highScoresListDisplay")
 let finalScores_dictionary = 
 {
-    
-
 }
 let finalScores_list =[]
 let goBackButton = document.querySelector("#goBackButton")
@@ -14,7 +13,6 @@ let secondsLeftText = document.querySelector("#Time"); // define variable
 let finalPage = document.querySelector("#finalPage"); // define variable
 let secondsLeft = 75   // Create Variable for time interval equal 75 seconds.
 let question_position = 0;
-console.log(question_position) // Create a variable to hold the index 
 function setTime(){     // Create function to run timer
     const timerInterval = setInterval(
         function(){ 
@@ -174,7 +172,6 @@ function correct_answer(){
     if (question_position == questions_list.length -1){ // minus one to stop generating the quetion 
         questions.style.display = "none"; // Hiding the questions
         post_quiz.style.display = "block"; // Display " All done" slide
-        console.log(finalScore_text)
         finalScore_text.innerHTML= " Your final score is " + finalScore.toString();
         return;
     } 
@@ -184,9 +181,7 @@ function correct_answer(){
     question_position += 1
     generate_questions(question_position);
     generate_multipleChoice(questions_list[question_position].correct_answer -1)
-    finalScore += 10 
-    console.log(finalScore)
-    
+    finalScore += 10   
 }
 function inCorrect_answer(){
     secondsLeft -= 20;
@@ -217,10 +212,29 @@ function submit() { // create submit function for Submit Button
     let initialList = document.getElementsByName('initial') // use a list of elementhave initial as a name
     for ( let i = 0; i < initialList.length; i++ ) { // Get individual element 
         let a = initialList[i];
-        console.log(a.value)
         finalScores_dictionary[finalScore.toString()].push(a.value)
-        console.log(finalScores_dictionary) 
     }
+    finalScores_list.sort()
+    finalScores_list.reverse()
+    for ( let k = 0; k < finalScores_list.length; k++ ){
+       let initials = finalScores_dictionary[finalScores_list[k]]
+       console.log(initials)
+       for ( j = 0; j < initials.length; j++ ) {
+        console.log(initials[j]);
+        
+        const li = document.createElement('li');
+        const text = document.createTextNode("abc");
+        li.appendChild(text);
+        highScoresListSection.appendChild(li);
+        // li.innerHTML = initials[j] - finalScore[k];
+       }
+    }
+    
+
+    //let li = document.createElement("li") 
+  // a.value.sort()
+   //a.value.rverse()
+  // document.getElementById("highScoresListDisplay").appendChild(li)
     // console.log(document.getElementsByName('initial'))
 }
 function goBack(){ // generating Go back button
