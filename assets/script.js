@@ -214,6 +214,9 @@ function submit() { // create submit function for Submit Button
         let a = initialList[i];
         finalScores_dictionary[finalScore.toString()].push(a.value)
     }
+    if (finalScores_list.indexOf(finalScore) == -1) {
+        finalScores_list.push(finalScore)
+    }
     finalScores_list.sort()
     finalScores_list.reverse()
     for ( let k = 0; k < finalScores_list.length; k++ ){
