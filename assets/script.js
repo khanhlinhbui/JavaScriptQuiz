@@ -1,4 +1,5 @@
 // First PAge
+let clearhighscore = document.querySelector("#clearHighScoresButton")
 let viewhighscoreClick = document.querySelector("#ViewHighscore")
 let highScoresListSection= document.querySelector("#highScoresListDisplay")
 let finalScores_dictionary = 
@@ -267,3 +268,9 @@ viewhighscoreClick.addEventListener("click", function(){
     post_quiz.style.display = "none";
     finalPage.style.display = "block";
 })
+clearhighscore.addEventListener("click", function(){
+    while (highScoresListSection.firstChild) {
+        highScoresListSection.removeChild(highScoresListSection.lastChild);
+    }
+})
+
