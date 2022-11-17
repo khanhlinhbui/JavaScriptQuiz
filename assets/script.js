@@ -203,9 +203,9 @@ function inCorrect_answer(){
 function submit() { // create submit function for Submit Button
     post_quiz.style.display = "none"; //hiding the postquiz page 
     finalPage.style.display = "block"; // display final page 
-    finalScores_dictionary
-    finalScores_list.push(finalScore)
-    if(!(finalScore.toString() in finalScores_dictionary)){ 
+    // finalScores_dictionary
+    // finalScores_list.push(finalScore) // keeping all the final score ti fina score list
+    if(!(finalScore.toString() in finalScores_dictionary)){ // checking to make sure there is no duplicated in score in the final score dictionary 
         finalScores_dictionary[finalScore.toString()] = []
     }
     
@@ -214,12 +214,18 @@ function submit() { // create submit function for Submit Button
         let a = initialList[i];
         finalScores_dictionary[finalScore.toString()].push(a.value)
     }
-    if (finalScores_list.indexOf(finalScore) == -1) {
+    if (finalScores_list.indexOf(finalScore) == -1) { // only add final score to final score list if there is no duplicated in the finalScore list
         finalScores_list.push(finalScore)
     }
-    finalScores_list.sort()
-    finalScores_list.reverse()
-    for ( let k = 0; k < finalScores_list.length; k++ ){
+    finalScores_list.sort() // sort the list from least to greatest
+    finalScores_list.reverse() // reverse from greates to least
+    console.log(finalScores_list)
+    console.log(finalScore)
+    console.log(finalScores_dictionary)
+    while (highScoresListSection.firstChild) {
+        highScoresListSection.removeChild(highScoresListSection.lastChild);
+    }
+    for ( let k = 0; k < finalScores_list.length; k++ ){  // process to print the list into highscore list 
        let initials = finalScores_dictionary[finalScores_list[k]]
        console.log(initials)
        for ( j = 0; j < initials.length; j++ ) {
