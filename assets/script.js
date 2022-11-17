@@ -1,4 +1,5 @@
 // First PAge
+let viewhighscoreClick = document.querySelector("#ViewHighscore")
 let highScoresListSection= document.querySelector("#highScoresListDisplay")
 let finalScores_dictionary = 
 {
@@ -260,4 +261,9 @@ function goBack(){ // generating Go back button
 }
 submitButton.addEventListener("click",submit) // Create a cloick for submit button 
 goBackButton.addEventListener("click",goBack) // Create a click for go back button 
-
+viewhighscoreClick.addEventListener("click", function(){
+    initial_screen.style.display = "none"; 
+    questions.style.display = "none";
+    post_quiz.style.display = "none";
+    finalPage.style.display = "block";
+})
